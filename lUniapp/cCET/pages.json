@@ -1,0 +1,144 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://doc.dcloud.net.cn/uni-app-x/collocation/pagesjson.html
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#fff"
+			}
+		},
+		{
+			"path": "pages/homePage/homePage",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/evaluationPage/evaluationPage",
+			"style": {
+				"navigationBarTitleText": "测评"
+			}
+		},
+		{
+			"path": "pages/serviceAgreement/serviceAgreement",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/privacyProtection/privacyProtection",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/interviewPage/interviewPage",
+			"style": {
+				"navigationBarTitleText": "面试"
+			}
+		},
+		{
+			"path": "pages/trainingPage/trainingPage",
+			"style": {
+				"navigationBarTitleText": "培训"
+			}
+		},
+		{
+			"path": "pages/myPage/myPage",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path": "pages/readDailyPage/readDailyPage",
+			"style": {
+				"navigationBarTitleText": "每日一读"
+			}
+		},
+		{
+			"path": "pages/bonVoyagePage/bonVoyagePage",
+			"style": {
+				"navigationBarTitleText": "BON VOYAGE"
+			}
+		},
+		{
+			"path": "pages/listeningPage/listeningPage",
+			"style": {
+				"navigationBarTitleText": "听力题"
+			}
+		},
+		{
+			"path": "pages/helpPage/helpPage",
+			"style": {
+				"navigationBarTitleText": "帮 助"
+			}
+		},
+		{
+			"path": "pages/messagePage/messagePage",
+			"style": {
+				"navigationBarTitleText": "消 息"
+			}
+		},
+		{
+			"path": "pages/addressPage/addressPage",
+			"style": {
+				"navigationBarTitleText": "公司地址"
+			}
+		},
+		{
+			"path": "pages/oursPage/oursPage",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},
+		{
+			"path" : "pages/certificatePage/certificatePage",
+			"style" : 
+			{
+				"navigationBarTitleText" : "证 书"
+			}
+		}
+	],
+	"tabBar": {
+		"selectedColor": "#00ccff",
+		"list": [{
+				"pagePath": "pages/homePage/homePage",
+				"text": "首页",
+				"iconPath": "/static/images/home.png",
+				"selectedIconPath": "/static/images/homeActive.png"
+			},
+			{
+				"pagePath": "pages/evaluationPage/evaluationPage",
+				"text": "测评",
+				"iconPath": "/static/images/Evaluation.png",
+				"selectedIconPath": "/static/images/EvaluationActive.png"
+			},
+			{
+				"pagePath": "pages/interviewPage/interviewPage",
+				"text": "面试",
+				"iconPath": "/static/images/Interview.png",
+				"selectedIconPath": "/static/images/InterviewActive.png"
+			},
+			{
+				"pagePath": "pages/trainingPage/trainingPage",
+				"text": "培训",
+				"iconPath": "/static/images/Training.png",
+				"selectedIconPath": "/static/images/TrainingActive.png"
+			},
+			{
+				"pagePath": "pages/myPage/myPage",
+				"text": "我的",
+				"iconPath": "/static/images/My.png",
+				"selectedIconPath": "/static/images/MyActive.png"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#00ccff",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

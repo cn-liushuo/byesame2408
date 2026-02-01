@@ -1,0 +1,13 @@
+<template>
+	<scroll-view scroll-y>
+		<text>隐私政策</text>
+	</scroll-view>
+</template>
+
+<script setup lang="uts">
+
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,65 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="readDailyPage" @scrolltolower="lower">
+	<!-- #endif -->
+		<!-- 卡片 -->
+		<view class="card" v-for="item in tableData">
+			<view class="card-left">
+				<image style="width: 188rpx;" src="/static/images/readDaily.jpg" mode="widthFix"></image>
+			</view>
+			<view class="card-right">
+				<text class="card-right-title">生命的美丽在于进取</text>
+				<text class="card-right-content">就像大树的美丽，是展现在它负势向上高耸入云的蓬勃生机中；像雄鹰的美丽，是展现在它搏风击雨如苍天之魂的翱翔中</text>
+			</view>
+		</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+	// 从后端获取的数据
+	const tableData = ref(10)
+	// 上拉触底时触发
+	const lower = () => {
+		// console.debug("上拉触底了")
+		tableData.value = tableData.value + 5
+	}
+</script>
+
+<style scoped lang="scss">
+	.readDailyPage {
+		flex: 1;
+		width: 100%;
+		margin-bottom: 40rpx;
+	}
+
+	.card {
+		display: flex;
+		flex-direction: row;
+		background-color: #E1E2E9;
+		width: 90%;
+		margin: 40rpx auto 0;
+	}
+
+	.card-left {
+		width: 30%;
+	}
+
+	.card-right {
+		width: 70%;
+		padding-left: 44rpx;
+		padding-top: 36rpx;
+		padding-right: 44rpx;
+	}
+
+	.card-right-title {
+		font-size: 22rpx;
+		color: #3b3b3b;
+	}
+
+	.card-right-content {
+		font-size: 20rpx;
+		color: #6a6a6a;
+	}
+</style>

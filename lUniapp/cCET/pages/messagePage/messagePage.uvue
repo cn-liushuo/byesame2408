@@ -1,0 +1,126 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="oursPage">
+	<!-- #endif -->
+		<!-- 顶部背景 -->
+		<view class="background">
+			<view class="background-top"></view>
+			<view class="background-bottom"></view>
+		</view>
+		<!-- 信息卡 -->
+		<scroll-view class="card" :show-scrollbar="false">
+			<view class="card-item" v-for="(item,index) in 10" :key="index">
+				<view class="top">
+					<view class="left">
+						<view class="zuo">
+							<image style="width: 66rpx;" src="/static/images/logo.png" mode="widthFix"></image>
+						</view>
+						<view class="you">
+							<text class="you-text">大连宏沣船舶服务有限公司</text>
+						</view>
+					</view>
+					<view class="right">
+						<text class="right-text">2小时前</text>
+					</view>
+				</view>
+				<view class="bottom">
+					<text class="bottom-text">对不起，您的面试考试不合格，感谢您的参与，祝好！</text>
+				</view>
+			</view>
+		</scroll-view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+
+</script>
+
+<style scoped lang="scss">
+	.oursPage {
+		flex: 1;
+		background: #fff;
+		// width: 100%;
+	}
+
+	// 顶部背景
+	.background {
+		// width: 100%;
+		display: flex;
+		align-items: center;
+		z-index: -1;
+
+		.background-top {
+			width: 100%;
+			height: 116rpx;
+			background: rgba(133, 169, 255, 1);
+		}
+
+		.background-bottom {
+			margin-top: -400rpx;
+			width: 120%;
+			height: 550rpx;
+			background: rgba(133, 169, 255, 1);
+			border-radius: 150rpx
+		}
+	}
+
+	// 信息卡
+	.card {
+		border-radius: 10rpx;
+		padding: 0rpx 30rpx 60rpx;
+		background: #fff;
+		height: 96%;
+		width: 90%;
+		margin: 0 auto;
+		margin-top: -240rpx;
+		box-shadow: 1rpx 1rpx 1rpx linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+
+		.card-item {
+			padding-top: 32rpx;
+			padding-bottom: 34rpx;
+			border-bottom: 1rpx solid #ccc;
+		}
+
+		.top {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+
+			.left {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+				align-items: center;
+
+				.you {
+					padding-left: 14rpx;
+				}
+
+				.you-text {
+					font-size: 28rpx;
+					color: #333333;
+				}
+			}
+
+			.right {
+				.right-text {
+					font-size: 20rpx;
+					color: #999;
+				}
+			}
+		}
+
+		.bottom {
+			padding-left: 80rpx;
+			padding-right: 40rpx;
+
+			.bottom-text {
+				color: #747474;
+				font-size: 28rpx;
+			}
+		}
+	}
+</style>

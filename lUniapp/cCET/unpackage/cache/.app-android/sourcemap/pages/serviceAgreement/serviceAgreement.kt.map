@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/serviceAgreement/serviceAgreement.uvue"],"sourcesContent":["<template>\n\t<scroll-view scroll-y>\n\t\t<text>服务协议</text>\n\t</scroll-view>\n</template>\n\n<script setup>\n\t\t\n</script>\n\n<style>\n\t\t\n</style>\n"],"names":[],"mappings":";;;;;;;;;;;;;;;;;YAEE,SAAiB,IAAA,CAAA,GAAA,CAAX,WAAI"}

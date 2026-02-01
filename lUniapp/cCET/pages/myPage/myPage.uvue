@@ -1,0 +1,478 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="myPage">
+	<!-- #endif -->
+		<!-- 顶部背景 -->
+		<view class="background">
+			<view class="background-top"></view>
+			<view class="background-bottom"></view>
+		</view>
+		<!-- 人员信息卡 -->
+		<view class="prompt-card">
+			<!-- 姓名 -->
+			<view class="prompt-card-name">
+				<text class="prompt-card-name-text">张学友</text>
+			</view>
+			<!-- 认证 -->
+			<view class="certification">
+				<image style="width: 40rpx;" src="/static/images/certification.png" mode="widthFix"></image>
+				<text class="certification-text">已认证</text>
+			</view>
+			<!-- 听力题 -->
+			<view class="listening">
+				<text class="listening-text">听力题</text>
+				<view class="listening-progress">
+					<view :style="`width: ${listeningProgressBar}%`" class="listening-bar">
+						<text class="listening-bar-text" v-if="listeningProgressBar !== 0">
+							{{listeningProgressBar}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 选择题 -->
+			<view class="choice">
+				<text class="choice-text">选择题</text>
+				<view class="choice-progress">
+					<view :style="`width: ${choiceProgressBar}%`" class="choice-bar">
+						<text class="choice-bar-text" v-if="choiceProgressBar !== 0"> {{choiceProgressBar}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 简答题 -->
+			<view class="answer">
+				<text class="answer-text">简答题</text>
+				<view class="answer-progress">
+					<view :style="`width: ${answerProgressBar}%`" class="answer-bar">
+						<text class="answer-bar-text" v-if="answerProgressBar !== 0"> {{answerProgressBar}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 口语题 -->
+			<view class="oral">
+				<text class="oral-text">简答题</text>
+				<view class="oral-progress">
+					<view :style="`width: ${oralProgressBar}%`" class="oral-bar">
+						<text class="oral-bar-text" v-if="oralProgressBar !== 0"> {{oralProgressBar}}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 成绩 -->
+			<view class="grade">
+				<!-- 考试成绩 -->
+				<view class="exam-results">
+					<view class="exam-results-t">
+						<text class="exam-results-f">80</text>
+						<text class="exam-results-z">分</text>
+					</view>
+					<view class="exam-results-b">
+						<text class="exam-results-b-t">考试成绩</text>
+					</view>
+				</view>
+				<!-- 面试成绩 -->
+				<view class="interview-score">
+					<view class="interview-score-t">
+						<text class="interview-score-f">80</text>
+						<text class="interview-score-z">分</text>
+					</view>
+					<view class="interview-score-b">
+						<text class="interview-score-b-t">面试成绩</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 底部导航 -->
+		<view class="nav">
+			<view :class="`nav-item nav-item-${index}`" v-for="(item, index) in navList" :key="index"
+				@click="toPersonal(item.id)">
+				<view class="nav-item-btn">
+					<view class="nav-item-img">
+						<image style="width: 200rpx;" :src="item.src" mode="widthFix"></image>
+					</view>
+					<view class="nav-item-v">
+						<text class="nav-item-text">{{item.name}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+	// 底部导航图标与名称列表
+	const navList = [
+		{
+			id: '0',
+			src: '/static/images/certificate.png',
+			name: '证 书'
+		},
+		{
+			id: '1',
+			src: '/static/images/message.png',
+			name: '消 息'
+		},
+		{
+			id: '2',
+			src: '/static/images/ours.png',
+			name: '关 于 我 们'
+		},
+		{
+			id: '3',
+			src: '/static/images/address.png',
+			name: '公 司 地 址'
+		}
+	]
+	// 听力题进度条值
+	const listeningProgressBar = ref(70)
+	// 选择题进度条值
+	const choiceProgressBar = ref(90)
+	// 简答题进度条值
+	const answerProgressBar = ref(90)
+	// 口语题进度条值
+	const oralProgressBar = ref(90)
+	// 跳转页面
+	const toPersonal = (id : string) => {
+		if (id === '0') {
+			uni.navigateTo({
+				url: '/pages/certificatePage/certificatePage'
+			})
+		} else if (id === '1') {
+			uni.navigateTo({
+				url: '/pages/messagePage/messagePage'
+			})
+		} else if (id === '2') {
+			uni.navigateTo({
+				url: '/pages/oursPage/oursPage'
+			})
+		} else if (id === '3') {
+			uni.navigateTo({
+				url: '/pages/addressPage/addressPage'
+			})
+		}
+	}
+</script>
+
+<style scoped lang="scss">
+	.myPage {
+		flex: 1;
+		background: #fff;
+		// width: 100%;
+	}
+
+	// 顶部背景
+	.background {
+		// width: 100%;
+		display: flex;
+		align-items: center;
+		z-index: -1;
+
+		.background-top {
+			width: 100%;
+			height: 116rpx;
+			background: rgba(133, 169, 255, 1);
+		}
+
+		.background-bottom {
+			margin-top: -400rpx;
+			width: 120%;
+			height: 550rpx;
+			background: rgba(133, 169, 255, 1);
+			border-radius: 150rpx
+		}
+	}
+
+	// 人员信息卡
+	.prompt-card {
+		width: 90%;
+		background: #fff;
+		margin: 0 auto;
+		margin-top: -240rpx;
+		box-shadow: 1rpx 1rpx 1px linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+		padding-left: 52rpx;
+		padding-top: 32rpx;
+		border-radius: 8rpx;
+		padding-bottom: 18rpx;
+	}
+
+	// 姓名
+	.prompt-card-name {}
+
+	.prompt-card-name-text {
+		color: rgba(87, 87, 110, 1);
+		font-size: 44rpx;
+		font-weight: 700;
+	}
+
+	// 认证
+	.certification {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.certification-text {
+		font-size: 24rpx;
+		color: #a0a6ae;
+	}
+
+	// 听力题
+	.listening {
+		margin-top: 26rpx;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.listening-text {
+		color: #797979;
+		font-size: 30rpx;
+	}
+
+	.listening-progress {
+		margin-left: 24rpx;
+		width: 436rpx;
+		height: 26rpx;
+		border-radius: 13rpx;
+		border: 2rpx solid #fff336;
+	}
+
+	.listening-bar {
+		height: 26rpx;
+		border-radius: 13rpx;
+		background: linear-gradient(0.25turn, #fefbb2, #fff21f);
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.listening-bar-text {
+		font-weight: 700;
+		font-size: 24rpx;
+		color: #fff;
+		margin-right: 20rpx;
+	}
+
+	// 选择题
+	.choice {
+		margin-top: 26rpx;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.choice-text {
+		color: #797979;
+		font-size: 30rpx;
+	}
+
+	.choice-progress {
+		margin-left: 24rpx;
+		width: 436rpx;
+		height: 26rpx;
+		border-radius: 13rpx;
+		border: 2rpx solid #c4dd8b;
+	}
+
+	.choice-bar {
+		height: 26rpx;
+		border-radius: 13rpx;
+		background: linear-gradient(0.25turn, #e8f2d2, #b6d672);
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.choice-bar-text {
+		font-weight: 700;
+		font-size: 24rpx;
+		color: #fff;
+		margin-right: 20rpx;
+	}
+
+	// 简答题
+	.answer {
+		margin-top: 26rpx;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.answer-text {
+		color: #797979;
+		font-size: 30rpx;
+	}
+
+	.answer-progress {
+		margin-left: 24rpx;
+		width: 436rpx;
+		height: 26rpx;
+		border-radius: 13rpx;
+		border: 2rpx solid #9ad3fd;
+	}
+
+	.answer-bar {
+		height: 26rpx;
+		border-radius: 13rpx;
+		background: linear-gradient(0.25turn, #d8eefe, #84cafd);
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.answer-bar-text {
+		font-weight: 700;
+		font-size: 24rpx;
+		color: #fff;
+		margin-right: 20rpx;
+	}
+
+	// 口语题
+	.oral {
+		margin-top: 26rpx;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.oral-text {
+		color: #797979;
+		font-size: 30rpx;
+	}
+
+	.oral-progress {
+		margin-left: 24rpx;
+		width: 436rpx;
+		height: 26rpx;
+		border-radius: 13rpx;
+		border: 2rpx solid #fbcbd7;
+	}
+
+	.oral-bar {
+		height: 26rpx;
+		border-radius: 13rpx;
+		background: linear-gradient(0.25turn, #fdebf0, #fac0cf);
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.oral-bar-text {
+		font-weight: 700;
+		font-size: 24rpx;
+		color: #fff;
+		margin-right: 20rpx;
+	}
+
+	// 成绩
+	.grade {
+		margin-top: 38rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.exam-results,
+	.interview-score {
+		width: 50%;
+	}
+
+	.exam-results-t,
+	.interview-score-t {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	.exam-results-f,
+	.interview-score-f {
+		color: #85A9FF;
+		font-size: 52rpx;
+		font-weight: 700;
+	}
+
+	.exam-results-z,
+	.interview-score-z {
+		color: #85A9FF;
+		font-weight: 700;
+	}
+
+	.exam-results-b,
+	.interview-score-b {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.exam-results-b-t,
+	.interview-score-b-t {
+		color: #69727D;
+		font-size: 28rpx;
+	}
+
+	// 底部导航
+	.nav {
+		width: 90%;
+		margin: 0 auto;
+		margin-top: 42rpx;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.nav-item {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 50%;
+		height: 50%;
+	}
+
+	.nav-item-0 {
+		border-right: 1rpx solid rgba(153, 153, 153, 0.3);
+		border-bottom: 1rpx solid rgba(153, 153, 153, 0.3);
+	}
+
+	.nav-item-1 {
+		border-bottom: 1rpx solid rgba(153, 153, 153, 0.3);
+	}
+
+	.nav-item-2 {
+		border-right: 1rpx solid rgba(153, 153, 153, 0.3);
+	}
+
+	.nav-item-btn {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 30rpx 40rpx;
+	}
+
+	.nav-item-img {
+		width: 200rpx;
+		height: 200rpx;
+	}
+
+	.nav-item-v {}
+
+	.nav-item-text {
+		margin: 0 auto;
+		width: 100%;
+		color: #57616E;
+		font-size: 26rpx;
+		text-align: center;
+	}
+</style>

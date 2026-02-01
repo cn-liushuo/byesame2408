@@ -1,0 +1,88 @@
+{
+	"name": "CET",
+	"appid": "__UNI__147079A",
+	"description": "船员测评培训",
+	"versionName": "1.0.0",
+	"versionCode": "100",
+	"uni-app-x": {},
+	/* 快应用特有相关 */
+	"quickapp": {},
+	/* 小程序特有相关 */
+	"mp-weixin": {
+		"appid": "",
+		"setting": {
+			"urlCheck": false
+		},
+		"usingComponents": true
+	},
+	"mp-alipay": {
+		"usingComponents": true
+	},
+	"mp-baidu": {
+		"usingComponents": true
+	},
+	"mp-toutiao": {
+		"usingComponents": true
+	},
+	"uniStatistics": {
+		"enable": false
+	},
+	"vueVersion": "3",
+	"app": {
+		"distribute": {
+			"icons": {
+				"android": {
+					"hdpi": "",
+					"xhdpi": "",
+					"xxhdpi": "",
+					"xxxhdpi": ""
+				}
+			}
+		}
+	},
+	"app-android": {
+		"distribute": {
+			"modules": {},
+			"icons": {
+				"hdpi": "",
+				"xhdpi": "",
+				"xxhdpi": "",
+				"xxxhdpi": ""
+			},
+			"splashScreens": {
+				"default": {}
+			}
+		}
+	},
+	"app-ios": {
+		"distribute": {
+			"modules": {},
+			"icons": {},
+			"splashScreens": {}
+		}
+	},
+	"app-harmony": {
+		"distribute": {
+			"bundleName": "",
+			"icons": {
+				"foreground": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png",
+				"background": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png"
+			},
+			"splashScreens": {
+				"startWindowIcon": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png"
+			},
+			"modules": {
+				"uni-map": {
+					"tencent": {
+						"key": "R26BZ-LCFKW-RTKRA-YJMPE-4S22K-G4B2G"
+					}
+				}
+			}
+		}
+	},
+	"web": {
+		"router": {
+			"mode": ""
+		}
+	}
+}

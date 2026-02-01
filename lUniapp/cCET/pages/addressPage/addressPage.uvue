@@ -1,0 +1,26 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view style="flex:1">
+	<!-- #endif -->
+		<text>目前地图还没有研究明白，后续添加</text>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+	const getLocation = () => {
+		// 不可调用
+		// uni.openLocation({
+		// 	latitude: 38.930238,
+		// 	longitude: 121.670026
+		// })
+	}
+	onMounted(() => {
+		// getLocation()
+	})
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,61 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="helpPage">
+	<!-- #endif -->
+		<!-- 顶部背景 -->
+		<view class="background">
+			<view class="background-top"></view>
+			<view class="background-bottom"></view>
+		</view>
+		<!-- 信息卡 -->
+		<view class="card">
+			<web-view src="https://m.baidu.com/"></web-view>
+		</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+
+</script>
+
+<style scoped lang="scss">
+	.helpPage {
+		flex: 1;
+		background: #fff;
+		// width: 100%;
+	}
+
+	// 顶部背景
+	.background {
+		// width: 100%;
+		display: flex;
+		align-items: center;
+		z-index: -1;
+
+		.background-top {
+			width: 100%;
+			height: 116rpx;
+			background: rgba(133, 169, 255, 1);
+		}
+
+		.background-bottom {
+			margin-top: -400rpx;
+			width: 120%;
+			height: 550rpx;
+			background: rgba(133, 169, 255, 1);
+			border-radius: 150rpx
+		}
+	}
+	// 信息卡
+	.card {
+		border-radius: 10rpx;
+		background: #fff;
+		height: 96%;
+		width: 90%;
+		margin: 0 auto;
+		margin-top: -240rpx;
+		box-shadow: 1rpx 1rpx 1rpx linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+	}
+</style>

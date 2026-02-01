@@ -1,0 +1,149 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="oursPage">
+	<!-- #endif -->
+		<!-- 顶部背景 -->
+		<view class="background">
+			<view class="background-top"></view>
+			<view class="background-bottom"></view>
+		</view>
+		<!-- 信息卡 -->
+		<view class="card">
+			<!-- 标题 -->
+			<view class="title">
+				<text class="title-text">About</text>
+			</view>
+			<!-- 副标题 -->
+			<view class="sub-title">
+				<text class="sub-title-text">团结 进取 诚信 开拓</text>
+			</view>
+			<!-- 分割线 -->
+			<view class="dividing"></view>
+			<!-- 宏沣 -->
+			<view class="hongf">
+				<text class="name">大连宏沣国际船舶管理有限公司</text>
+				<text class="address">辽宁省大连市中山区人民东路52号21层1号</text>
+				<text class="phone">0411-8252399</text>
+			</view>
+			<!-- 东荣 -->
+			<view class="dongr">
+				<text class="name">大连东荣船舶管理有限公司</text>
+				<text class="address">辽宁省大连市中山区人民东路52号21层1号</text>
+				<text class="phone">0411-82523669</text>
+			</view>
+			<!-- 鸿嘉 -->
+			<view class="hongj">
+				<text class="name">大连鸿嘉船务咨询服务有限公司</text>
+				<text class="address">辽宁省大连市中山区人民东路52号21层1号</text>
+				<text class="phone">0411-82351799</text>
+			</view>
+		</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+</template>
+
+<script setup lang="uts">
+
+</script>
+
+<style scoped lang="scss">
+	.oursPage {
+		flex: 1;
+		background: #fff;
+		// width: 100%;
+	}
+
+	// 顶部背景
+	.background {
+		// width: 100%;
+		display: flex;
+		align-items: center;
+		z-index: -1;
+
+		.background-top {
+			width: 100%;
+			height: 116rpx;
+			background: rgba(133, 169, 255, 1);
+		}
+
+		.background-bottom {
+			margin-top: -400rpx;
+			width: 120%;
+			height: 550rpx;
+			background: rgba(133, 169, 255, 1);
+			border-radius: 150rpx
+		}
+	}
+
+	// 信息卡
+	.card {
+		border-radius: 10rpx;
+		padding: 60rpx 70rpx;
+		background: #fff;
+		height: 96%;
+		width: 90%;
+		margin: 0 auto;
+		margin-top: -240rpx;
+		box-shadow: 1rpx 1rpx 1rpx linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+	}
+
+	// 标题
+	.title {}
+
+	.title-text {
+		color: #4A4A4A;
+		font-size: 81.16rpx;
+	}
+
+	// 副标题
+	.sub-title {
+		width: 80%;
+		margin-top: 16rpx;
+		background-color: #b5b5b5;
+		padding: 4rpx 14rpx 4rpx 14rpx;
+	}
+
+	.sub-title-text {
+		color: #fff;
+		font-size: 34rpx;
+	}
+
+	// 分割线
+	.dividing {
+		margin-top: 14rpx;
+		width: 50%;
+		height: 10rpx;
+		background: #85A9FF;
+	}
+
+	// 宏沣
+	.hongf {
+		margin-top: 62rpx;
+		padding-bottom: 40rpx;
+		border-bottom: 1rpx solid #bfbfbf;
+	}
+
+	// 东荣 鸿嘉
+	.dongr,
+	.hongj {
+		margin-top: 34rpx;
+		padding-bottom: 40rpx;
+		border-bottom: 1rpx solid #bfbfbf;
+	}
+
+	.name {
+		font-size: 34rpx;
+		color: #424242;
+	}
+
+	.address {
+		font-size: 26rpx;
+		color: #424242;
+	}
+
+	.phone {
+		font-size: 26rpx;
+		color: #424242;
+	}
+</style>

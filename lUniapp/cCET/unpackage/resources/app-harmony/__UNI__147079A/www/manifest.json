@@ -1,0 +1,24 @@
+{
+  "id": "__UNI__147079A",
+  "name": "CET",
+  "description": "船员测评培训",
+  "version": {
+    "name": "1.0.0",
+    "code": "100"
+  },
+  "uni-app-x": {
+    "compilerVersion": "4.75"
+  },
+  "app-harmony": {
+    "distribute": {
+      "bundleName": "",
+      "icons": {
+        "foreground": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png",
+        "background": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png"
+      },
+      "splashScreens": {
+        "startWindowIcon": "E:/code/experiment/pHarmonyOS/cUniappHarmonyDemo/static/images/DLHFDLDRDLHM.png"
+      }
+    }
+  }
+}

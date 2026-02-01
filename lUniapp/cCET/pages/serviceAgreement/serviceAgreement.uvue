@@ -1,0 +1,13 @@
+<template>
+	<scroll-view scroll-y>
+		<text>服务协议</text>
+	</scroll-view>
+</template>
+
+<script setup lang="uts">
+		
+</script>
+
+<style>
+		
+</style>

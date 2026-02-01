@@ -1,0 +1,175 @@
+<template>
+	<scroll-view scroll-y="true" class="loginPage">
+		<view class="loginPage">
+			<!-- 第一行图片 -->
+			<view class="img">
+				<image style="width: 502rpx;" src="/static/images/DLHFDLDRDLHM.png" mode="widthFix"></image>
+			</view>
+			<!-- 第二行用户名输入框 -->
+			<view class="username">
+				<view class="username-icon">
+					<image style="width: 40rpx;" src="/static/images/username.png" mode="widthFix"></image>
+				</view>
+				<view class="username-input">
+					<input class="uni-input" type="text" placeholder="用户名" @input="usernameInput($event)" />
+				</view>
+			</view>
+			<!-- 第三行密码输入框 -->
+			<view class="password">
+				<view class="password-icon">
+					<image style="width: 40rpx;" src="/static/images/password.png" mode="widthFix"></image>
+				</view>
+				<view class="password-input">
+					<input class="uni-input" type="text" placeholder="密码" :password="true"
+						@input="passwordInput($event)" />
+				</view>
+			</view>
+			<!-- 第四行协议信息 -->
+			<view class="agreement">
+				<view class="radio">
+					<radio :checked="isChecked" @click="handleChecked"></radio>
+				</view>
+				<view class="text">
+					我已阅读并同意&nbsp;<text class="agreement-text" @click="toServiceAgreement">服务协议</text>&nbsp;&&nbsp;<text
+						class="agreement-text" @click="toPrivacyProtection">隐私保护</text>
+				</view>
+			</view>
+			<!-- 第五行自定义登录按钮 -->
+			<view class="custom-button" @click="handleLogin()"
+				:style="username !== '' && password !== '' &&isChecked?'background-color: #007ffc;': 'background-color: rgb(202, 202, 202);'">
+				<text class="custom-button-text">登录</text>
+			</view>
+		</view>
+	</scroll-view>
+</template>
+
+<script setup lang="uts">
+	const username = ref("")
+	const password = ref("")
+	const isChecked = ref(false)
+
+	// 用户名输入框
+	const usernameInput = (e : UniInputEvent) => {
+		username.value = e.detail.value
+	}
+	// 密码输入框
+	const passwordInput = (e : UniInputEvent) => {
+		password.value = e.detail.value
+	}
+	// 协议同意按钮
+	const handleChecked = () => {
+		isChecked.value = !isChecked.value
+	}
+	// 跳转到服务协议页面
+	const toServiceAgreement = () => {
+		// console.log('服务协议');
+		uni.navigateTo({
+			url: '/pages/serviceAgreement/serviceAgreement'
+		})
+	}
+	// 跳转到隐私保护页面
+	const toPrivacyProtection = () => {
+		// console.log('隐私保护');
+		uni.navigateTo({
+			url: '/pages/privacyProtection/privacyProtection'
+		})
+	}
+	// 登录
+	const handleLogin = () => {
+		// 1、调用登录接口
+		// 2、登录接口为true跳转到首页
+		if (username.value !== "" && password.value !== "" && isChecked.value) {
+			uni.switchTab({
+				url: '/pages/homePage/homePage'
+			})
+		}
+	}
+</script>
+
+<style scoped lang="scss">
+	.loginPage {
+		background-color: $uni-bg-color;
+		height: 100%;
+		width: 100%;
+	}
+
+	.img {
+		width: 100%;
+		align-items: center;
+	}
+
+	.username,
+	.password {
+		width: 612rpx;
+		height: 92rpx;
+		border: 1px solid #eee;
+		margin: 0 auto;
+		margin-top: 130rpx;
+		display: flex; // 设置为 flex 容器
+		flex-direction: row; // 主轴方向为水平
+		box-shadow: 0 0 5rpx 0 #00CCFF;
+	}
+
+	.password {
+		margin-top: 30rpx;
+	}
+
+	.username-icon,
+	.password-icon {
+		margin-left: 40rpx;
+		margin-top: 24rpx;
+		margin-right: 40rpx;
+	}
+
+	.username-input,
+	.password-input {}
+
+	.uni-input {
+		height: 92rpx;
+		font-size: 38rpx;
+		padding: 0;
+		flex: 1;
+		background-color: #fff;
+	}
+
+	.agreement {
+		margin-top: 60rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.agreement>.radio {}
+
+	.agreement>.text {
+		font-size: 24rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.agreement>.text>.agreement-text {
+		font-size: 30rpx;
+		color: blue
+	}
+
+	.custom-button {
+		width: 612rpx;
+		height: 92rpx;
+		margin: 80rpx auto 0;
+		border-radius: 50rpx;
+		background-color: rgb(202, 202, 202);
+		color: #fff;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.custom-button-text {
+		color: #fff;
+		letter-spacing: 40rpx;
+	}
+</style>

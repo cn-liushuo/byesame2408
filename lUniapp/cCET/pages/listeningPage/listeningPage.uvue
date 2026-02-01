@@ -1,0 +1,497 @@
+<template>
+	<!-- #ifdef APP -->
+	<scroll-view class="listeningPage">
+	<!-- #endif -->
+		<!-- 人员信息 -->
+		<view class="card-staff">
+			<view class="card-staff-left">
+				<text class="card-staff-left-text">张学友</text>
+			</view>
+			<view class="card-staff-right">
+				<image style="width: 96rpx;" src="/static/images/alarmClock.png" mode="widthFix"></image>
+				<text class="card-staff-right-text">{{time}}</text>
+			</view>
+		</view>
+		<!-- 题目信息 -->
+		<view class="card-Question">
+			<view class="wrap-one">
+				<image @click="playTheAudio()" style="width: 120rpx;" src="/static/images/listeningSpeaker.png"
+					mode="widthFix"></image>
+			</view>
+			<view class="wrap-two">
+				<text class="wrap-two-text">1.</text>
+			</view>
+			<view class="wrap-three">
+				<view class="wrap-three-left">
+					<text class="wrap-three-left-text">A</text>
+				</view>
+				<view class="wrap-three-right">
+					<text class="wrap-three-right-text">一路顺风、安然无恙、一路顺风一路顺风一路</text>
+				</view>
+			</view>
+			<view class="wrap-three">
+				<view class="wrap-three-left">
+					<text class="wrap-three-left-text">B</text>
+				</view>
+				<view class="wrap-three-right">
+					<text class="wrap-three-right-text">一路顺风、安然无恙、一路顺风一路顺风一路</text>
+				</view>
+			</view>
+			<view class="wrap-three">
+				<view class="wrap-three-left">
+					<text class="wrap-three-left-text">C</text>
+				</view>
+				<view class="wrap-three-right">
+					<text class="wrap-three-right-text">一路顺风、安然无恙、一路顺风一路顺风一路</text>
+				</view>
+			</view>
+			<view class="wrap-three">
+				<view class="wrap-three-left">
+					<text class="wrap-three-left-text">D</text>
+				</view>
+				<view class="wrap-three-right">
+					<text class="wrap-three-right-text">一路顺风、安然无恙、一路顺风一路顺风一路</text>
+				</view>
+			</view>
+		</view>
+		<!-- 按钮 -->
+		<view class="btn">
+			<view class="btn-left" @click="toAnswerSheetPage()">
+				<text class="btn-left-text">答题卡</text>
+			</view>
+			<view class="btn-right" @click="NextQuestion()">
+				<text class="btn-right-text">下一题</text>
+			</view>
+		</view>
+	<!-- #ifdef APP -->
+	</scroll-view>
+	<!-- #endif -->
+	<!-- 页面弹出提示 -->
+	<view class="prompt" v-if="isPrompt">
+		<!-- 底层 -->
+		<view class="prompt-card-substrate">
+			<image class="img" style="width: 209rpx;" src="/static/images/semicircle.png" mode="widthFix"></image>
+		</view>
+		<!-- 中间层 -->
+		<view class="prompt-card-middle">
+			<!-- 叉 -->
+			<view class="fork" @click="toPreviousPage()">X</view>
+			<!-- 竖 -->
+			<view class="vertical"></view>
+			<!-- 点 -->
+			<view class="point"></view>
+			<!-- 图标 -->
+			<view class="icon">
+				<image style="width: 80rpx;" src="/static/images/circle.png" mode="widthFix"></image>
+				<!-- 竖 -->
+				<view class="icon-vertiacl"></view>
+				<!-- 点 -->
+				<view class="icon-point"></view>
+			</view>
+			<!-- 点1 -->
+			<view class="dot-1"></view>
+			<!-- 点2 -->
+			<view class="dot-2"></view>
+			<!-- 点3 -->
+			<view class="dot-3"></view>
+			<!-- 标题 -->
+			<view class="title">
+				<text class="tit-title">提示</text>
+			</view>
+			<!-- 内容 -->
+			<view class="content">
+				<text class="con-content">1.此题型共有20题，每题2分，共40分</text>
+				<text class="con-content">2.答题时间：20分钟</text>
+				<text class="con-content">3.请一次性完成答题</text>
+			</view>
+			<!-- 开始按钮 -->
+			<view class="beginBtn" @click="begin">
+				<text class="beginBtn-text">开始</text>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script setup lang="uts">
+	// import {onMounted,ref} from 'vue'
+	// 判断页面是否弹出提示
+	const isPrompt = ref(false)
+	// 倒计时
+	const time = ref("00:20:00")
+	// 定义倒计时总数
+	const totalTime = ref(20 * 60)
+
+	// 播放听力按钮
+	const playTheAudio = () => {
+		console.log('播放听力')
+	}
+	// 跳转到答题卡页面
+	const toAnswerSheetPage = () => {
+		console.log('跳转到答题卡页面')
+	}
+	// 下一题按钮
+	const NextQuestion = () => {
+		console.log('下一题')
+	}
+	// 返回上一页
+	const toPreviousPage = () => {
+		uni.navigateBack()
+	}
+	// 开始按钮
+	const begin = () => {
+		console.log('开始')
+		// 关闭提醒弹窗
+		isPrompt.value = false
+		// 启动倒计时
+		setTimeout(updateCountdown, 1000)
+	}
+	// 时间格式化函数：确保数字为两位数（不足补0）
+	const formatTime = (time : any) => {
+		return time < 10 ? `0${time}` : time;
+	}
+	// 倒计时函数
+	const updateCountdown = () => {
+		// 1.计算时分秒
+		const hours = Math.floor(totalTime.value / 3600);
+		const minutes = Math.floor(totalTime.value % 3600 / 60)
+		const seconds = totalTime.value % 60
+
+		// 2.格式化并更新显示
+		time.value = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`
+
+		// 3.倒计时未结束时，递归调用 setTimeout
+		if (totalTime.value > 0) {
+			totalTime.value--;
+			setTimeout(updateCountdown, 1000)
+		} else {
+			console.log('倒计时结束')
+			// 此处可扩展倒计时结束触发什么操作
+		}
+	}
+	onMounted(() => {
+		// console.log('页面DOM挂载后触发')
+		isPrompt.value = true
+	})
+</script>
+
+<style scoped lang="scss">
+	.listeningPage {
+		width: 100%;
+		flex: 1;
+	}
+
+	// 人员信息
+	.card-staff {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding: 40rpx 40rpx;
+		background-color: rgba(255, 255, 255, 1);
+		width: 90%;
+		margin: 20rpx auto 40rpx;
+		box-shadow: 1rpx 1rpx 1px linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+	}
+
+	.card-staff-left {
+		.card-staff-left-text {
+			letter-spacing: 2;
+			font-size: 34rpx;
+			font-weight: 700;
+			color: rgba(51, 51, 51, 1);
+			;
+		}
+	}
+
+	.card-staff-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.card-staff-right-text {
+			color: rgba(125, 125, 125, 1);
+			font-size: 23.15rpx;
+			margin-top: 15.28rpx;
+		}
+	}
+
+	// 题目信息
+	.card-Question {
+		width: 90%;
+		height: 70%;
+		margin: 0 auto;
+		border-radius: 10rpx;
+		margin-bottom: 36rpx;
+		background-color: rgba(255, 255, 255, 1);
+		box-shadow: 1rpx 1rpx 1px linear-gradient(rgba(0, 0, 0, 0.51), rgba(255, 255, 255, 1));
+	}
+
+	.card-Question>.wrap-one {
+		margin-top: 37rpx;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.wrap-two {
+		padding-left: 69rpx;
+
+		.wrap-two-text {
+			font-size: 41rpx;
+			color: rgba(46, 135, 247, 1);
+		}
+	}
+
+	.wrap-three {
+		display: flex;
+		flex-direction: row;
+		margin-top: 51rpx;
+		padding-left: 42rpx;
+
+		.wrap-three-left {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			width: 48rpx;
+			height: 48rpx;
+			border: 1 solid #808080;
+			border-radius: 48rpx;
+			margin-right: 38rpx;
+
+			.wrap-three-left-text {
+				font-size: 24rpx;
+			}
+		}
+
+		.wrap-three-right {
+			width: 80%;
+
+			.wrap-three-right-text {
+				font-size: 26rpx;
+			}
+		}
+	}
+
+	// 底部按钮
+	.btn {
+		width: 90%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.btn-left {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 25.56%;
+		height: 70rpx;
+		border: 1rpx solid #808080;
+		border-radius: calc(70rpx / 2);
+
+		.btn-left-text {
+			font-size: 23.15rpx;
+			color: rgba(0, 0, 0, 1);
+		}
+	}
+
+	.btn-right {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 60.74%;
+		height: 70rpx;
+		border: 1rpx solid transparent;
+		border-radius: calc(70rpx / 2);
+		background-color: rgba(53, 141, 248, 1);
+
+		.btn-right-text {
+			font-size: 23.15rpx;
+			color: rgba(255, 255, 255, 1);
+		}
+	}
+
+	// 页面弹出提示
+	.prompt {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(125, 125, 125, 0.3);
+	}
+
+	.prompt-card-substrate {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 90%;
+		height: 504rpx;
+		border-radius: 20rpx;
+		z-index: -2;
+
+		.img {
+			position: absolute;
+			right: -20;
+			top: 20%;
+			z-index: -1;
+		}
+	}
+
+	.prompt-card-middle {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 90%;
+		height: 504rpx;
+		border-radius: 20rpx;
+		background-color: rgba(255, 255, 255, 0.95);
+		z-index: -1;
+
+		// 叉
+		.fork {
+			position: absolute;
+			top: 22;
+			right: 30;
+		}
+
+		// 竖
+		.vertical {
+			width: 32rpx;
+			height: 124rpx;
+			background-color: rgba(255, 255, 255, 0.95);
+			position: absolute;
+			right: 20;
+			top: 90;
+			border-radius: 32rpx;
+		}
+
+		// 点
+		.point {
+			width: 32rpx;
+			height: 32rpx;
+			background-color: rgba(255, 255, 255, 0.95);
+			// background-color: skyblue;
+			position: absolute;
+			right: 20;
+			top: 160;
+			border-radius: 32rpx;
+		}
+
+		// 图标
+		.icon {
+			position: absolute;
+			top: 30;
+			left: 40;
+
+			.icon-vertiacl {
+				width: 7rpx;
+				height: 26rpx;
+				border-radius: 7rpx;
+				background-color: #fff;
+				position: absolute;
+				top: 10;
+				left: 19;
+			}
+
+			.icon-point {
+				width: 7rpx;
+				height: 7rpx;
+				border-radius: 7rpx;
+				background-color: #fff;
+				position: absolute;
+				top: 26;
+				left: 19;
+			}
+		}
+
+		// 点1
+		.dot-1 {
+			width: 5rpx;
+			height: 10rpx;
+			background-color: rgba(255, 201, 0, 1);
+			position: absolute;
+			top: 25;
+			left: 70;
+			border-radius: 5rpx;
+		}
+
+		// 点2
+		.dot-2 {
+			width: 5rpx;
+			height: 10rpx;
+			background-color: rgba(255, 201, 0, 1);
+			position: absolute;
+			top: 26;
+			left: 75;
+			border-radius: 5rpx;
+			transform: rotate(45deg);
+		}
+
+		// 点3
+		.dot-3 {
+			width: 5rpx;
+			height: 10rpx;
+			background-color: rgba(255, 201, 0, 1);
+			position: absolute;
+			top: 30;
+			left: 78;
+			border-radius: 5rpx;
+			transform: rotate(80deg);
+		}
+
+		// 标题
+		.title {
+			position: absolute;
+			left: 90;
+			top: 35;
+
+			.tit-title {
+				font-size: 45rpx;
+				color: rgba(46, 135, 247, 1);
+				font-weight: 700;
+			}
+		}
+
+		// 内容
+		.content {
+			position: absolute;
+			left: 40;
+			top: 90;
+
+			.con-content {
+				color: rgba(46, 135, 247, 1);
+				padding: 16rpx 0;
+				font-size: 30rpx;
+			}
+		}
+
+		// 开始按钮
+		.beginBtn {
+			width: 264rpx;
+			height: 80rpx;
+			background-color: #2e87f7;
+			position: absolute;
+			left: 30%;
+			top: 200;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 10rpx;
+
+			.beginBtn-text {
+				color: #fff;
+				letter-spacing: 10;
+				font-size: 25rpx;
+				font-weight: 400;
+			}
+		}
+	}
+</style>
