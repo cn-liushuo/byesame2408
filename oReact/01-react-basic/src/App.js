@@ -1,22 +1,37 @@
 // 项目的根组件
 // APP --> index.js --> public/index.html(root)
 
-// 1、jsx基础 -- 识别js表达式
+/* 1、jsx基础 -- 识别js表达式 */
 const count = 100;
 
 function getName() {
   return "jack";
 }
 
-// 2、jsx基础 -- 实现列表渲染
+/* 2、jsx基础 -- 实现列表渲染 */
 const list = [
   { id: 1001, name: "Vue" },
   { id: 1002, name: "React" },
   { id: 1003, name: "Angular" },
 ];
 
-// 3、jsx基础 -- 实现基础条件渲染
+/* 3、jsx基础 -- 实现基础条件渲染 */
 const isLogin = true;
+
+/* 4、jsx基础 -- 实现复杂条件渲染 */
+// 定义文章类型
+const articleType = 1; // 0 1 3
+
+// 定义核心函数(根据文章类型返回不同的JSX模板)
+function getArticleTemplate() {
+  if (articleType === 0) {
+    return <div>我是无图文章</div>;
+  } else if (articleType === 1) {
+    return <div>我是单图模式</div>;
+  } else {
+    return <div>我是三图模式</div>;
+  }
+}
 function App() {
   return (
     <div className="App">
@@ -47,6 +62,9 @@ function App() {
       {isLogin && <span>this is span</span>}
       {/* 三元运算 */}
       {isLogin ? <span>jack</span> : <span>loading...</span>}
+      <h3>4、jsx基础 -- 实现复杂条件渲染</h3>
+      {/* 调用函数渲染不同的模板 */}
+      {getArticleTemplate()}
     </div>
   );
 }
