@@ -14,11 +14,14 @@ const list = [
   { id: 1002, name: "React" },
   { id: 1003, name: "Angular" },
 ];
+
+// 3、jsx基础 -- 实现基础条件渲染
+const isLogin = true;
 function App() {
   return (
     <div className="App">
       this is App
-      {/* jsx基础 -- 识别js表达式 */}
+      <h3>1、jsx基础 -- 识别js表达式</h3>
       {/* 使用引号传递字符串 */}
       {"this is a message"}
       {/* 识别JS变量 */}
@@ -29,7 +32,7 @@ function App() {
       {new Date().getDate()}
       {/* 使用js对象 */}
       <div style={{ color: "red" }}>this is div</div>
-      {/* 2、jsx基础 -- 实现列表渲染 */}
+      <h3>2、jsx基础 -- 实现列表渲染</h3>
       {/* 渲染列表 */}
       {/* map 循环哪个结构 return 哪个结构 */}
       {/* 注意事项：加上一个独一无二的key string | number */}
@@ -39,6 +42,11 @@ function App() {
           <li key={item.id}>{item.name}</li>
         ))}
       </ul>
+      <h3>3、jsx基础 -- 实现基础条件渲染</h3>
+      {/* 逻辑与 && */}
+      {isLogin && <span>this is span</span>}
+      {/* 三元运算 */}
+      {isLogin ? <span>jack</span> : <span>loading...</span>}
     </div>
   );
 }
