@@ -33,6 +33,25 @@ function getArticleTemplate() {
   }
 }
 function App() {
+  /* 5、React中的事件绑定 -- 基础绑定 */
+  // function handleClick() {
+  //   console.log("button clicked")
+  // }
+
+  // 事件参数e
+  // function handleClick(e) {
+  //   console.log("button clicked", e)
+  // }
+
+  // 传递自定义参数
+  // function handleClick(name) {
+  //   console.log("button clicked", name)
+  // }
+
+  // 既要传递自定义参数，而且还要事件对象e
+  function handleClick(name, e) {
+    console.log("button clicked", name, e)
+  }
   return (
     <div className="App">
       this is App
@@ -65,6 +84,10 @@ function App() {
       <h3>4、jsx基础 -- 实现复杂条件渲染</h3>
       {/* 调用函数渲染不同的模板 */}
       {getArticleTemplate()}
+      {/* 5、React中的事件绑定 */}
+      {/* <button onClick={handleClick}>click me</button> */}
+      {/* <button onClick={() => handleClick("jack")}>click me</button> */}
+      <button onClick={(e) => handleClick("jack", e)}>click me</button>
     </div>
   );
 }
