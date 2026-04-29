@@ -32,6 +32,17 @@ function getArticleTemplate() {
     return <div>我是三图模式</div>;
   }
 }
+
+/* 6、React组件的基础使用 */
+// function Button() {
+//   // 业务逻辑组件逻辑
+//   return <button>click me</button>
+// }
+
+const Button = () => {
+  // 业务逻辑组件逻辑
+  return <button>click me</button>
+}
 function App() {
   /* 5、React中的事件绑定 -- 基础绑定 */
   // function handleClick() {
@@ -84,10 +95,16 @@ function App() {
       <h3>4、jsx基础 -- 实现复杂条件渲染</h3>
       {/* 调用函数渲染不同的模板 */}
       {getArticleTemplate()}
-      {/* 5、React中的事件绑定 */}
+      <h3>5、React中的事件绑定</h3>
       {/* <button onClick={handleClick}>click me</button> */}
       {/* <button onClick={() => handleClick("jack")}>click me</button> */}
       <button onClick={(e) => handleClick("jack", e)}>click me</button>
+      <h3>6、React组件的基础使用</h3>
+      {/* 使用组件，(渲染组件) */}
+      {/* 自闭和标签 */}
+      <Button />
+      {/* 成对标签 */}
+      <Button>click me</Button>
     </div>
   );
 }
