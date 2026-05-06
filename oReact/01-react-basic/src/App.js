@@ -1,8 +1,11 @@
 // 项目的根组件
 // APP --> index.js --> public/index.html(root)
 
+/* 7.2 导入 useState */
+import { useState } from 'react';
+
 /* 1、jsx基础 -- 识别js表达式 */
-const count = 100;
+// const count = 100;
 
 function getName() {
   return "jack";
@@ -43,6 +46,8 @@ const Button = () => {
   // 业务逻辑组件逻辑
   return <button>click me</button>
 }
+
+/* 7、useState 实现一个计数器按钮 */
 function App() {
   /* 5、React中的事件绑定 -- 基础绑定 */
   // function handleClick() {
@@ -60,8 +65,20 @@ function App() {
   // }
 
   // 既要传递自定义参数，而且还要事件对象e
-  function handleClick(name, e) {
-    console.log("button clicked", name, e)
+  // function handleClick(name, e) {
+  //   console.log("button clicked", name, e)
+  // }
+
+  /* 7.1 调用 useState 添加一个状态变量 */
+  // count 状态变量
+  // setCount 修改状态变量的方法
+  const [count, setCount] = useState(0);
+
+  /* 7.2 点击事件回调 */
+  const handleClick = () => {
+    // 作用：1、用传入的新值修改count
+    // 2、重新使用新的count渲染UI
+    setCount(count + 1);
   }
   return (
     <div className="App">
@@ -105,6 +122,8 @@ function App() {
       <Button />
       {/* 成对标签 */}
       <Button>click me</Button>
+      <h3>7、useState 实现一个计数器按钮</h3>
+      <button onClick={handleClick}>{count}</button>
     </div>
   );
 }
