@@ -78,6 +78,10 @@ function App() {
   const handleClick = () => {
     // 作用：1、用传入的新值修改count
     // 2、重新使用新的count渲染UI
+    /* 8、useState 修改状态的规则 */
+    // 直接修改 无法引发视图更新
+    // count++;
+    // console.log(count);
     setCount(count + 1);
   }
   return (
