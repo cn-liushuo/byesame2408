@@ -78,11 +78,24 @@ function App() {
   const handleClick = () => {
     // 作用：1、用传入的新值修改count
     // 2、重新使用新的count渲染UI
-    /* 8、useState 修改状态的规则 */
+    /* 8.1、useState 修改状态的规则 */
     // 直接修改 无法引发视图更新
     // count++;
     // console.log(count);
     setCount(count + 1);
+  }
+
+  /* 8.2、修改对象状态 */
+  const [form, setForm] = useState({ name: 'jack' });
+
+  const changeName = () => {
+    // 错误写法：直接修改
+    // form.name = 'john';
+    // 正确写法：setForm 传入一个全新的对象
+    setForm({
+      ...form,
+      name: 'john',
+    })
   }
   return (
     <div className="App">
@@ -128,6 +141,8 @@ function App() {
       <Button>click me</Button>
       <h3>7、useState 实现一个计数器按钮</h3>
       <button onClick={handleClick}>{count}</button>
+      <h3>8、修改对象状态</h3>
+      <button onClick={changeName}>修改form{form.name}</button>
     </div>
   );
 }
