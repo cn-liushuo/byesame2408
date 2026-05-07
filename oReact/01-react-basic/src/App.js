@@ -2,7 +2,10 @@
 // APP --> index.js --> public/index.html(root)
 
 /* 7.2 导入 useState */
-import { useState } from 'react';
+import { useState } from "react";
+
+/* 9.2.2、导入样式 */
+import "./index.css";
 
 /* 1、jsx基础 -- 识别js表达式 */
 // const count = 100;
@@ -44,10 +47,16 @@ function getArticleTemplate() {
 
 const Button = () => {
   // 业务逻辑组件逻辑
-  return <button>click me</button>
-}
+  return <button>click me</button>;
+};
 
 /* 7、useState 实现一个计数器按钮 */
+
+/* 9.1、行内样式控制 */
+const style = {
+  color: "red",
+  fontSize: "50px",
+}
 function App() {
   /* 5、React中的事件绑定 -- 基础绑定 */
   // function handleClick() {
@@ -83,10 +92,10 @@ function App() {
     // count++;
     // console.log(count);
     setCount(count + 1);
-  }
+  };
 
   /* 8.2、修改对象状态 */
-  const [form, setForm] = useState({ name: 'jack' });
+  const [form, setForm] = useState({ name: "jack" });
 
   const changeName = () => {
     // 错误写法：直接修改
@@ -94,9 +103,9 @@ function App() {
     // 正确写法：setForm 传入一个全新的对象
     setForm({
       ...form,
-      name: 'john',
-    })
-  }
+      name: "john",
+    });
+  };
   return (
     <div className="App">
       this is App
@@ -143,6 +152,12 @@ function App() {
       <button onClick={handleClick}>{count}</button>
       <h3>8、修改对象状态</h3>
       <button onClick={changeName}>修改form{form.name}</button>
+      <h3>9、组件样式方案</h3>
+      {/* 9.1、行内样式控制 */}
+      <span style={{ color: "red", fontSize: '50px' }}>this is span</span>
+      <span style={style}>this is span</span>
+      {/* 9.2.1、通过class类名控制 */}
+      <span className="foo">this is class foo</span>
     </div>
   );
 }
