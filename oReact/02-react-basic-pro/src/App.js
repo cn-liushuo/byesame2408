@@ -86,6 +86,16 @@ const App = () => {
     // 对 commentList 进行过滤处理
     setCommentList(commentList.filter(item => item.rpid !== id));
   }
+
+  // tab 切换功能
+  // 1、点击谁，就把谁的 type 记录下来
+  // 2、通过记录的 type 和每一项遍历时的 type 进行匹配 控制激活类名的显示
+  const [type, setType] = useState('hot');
+  const handleTabChange = (type) => {
+    console.log(type);
+    setType(type);
+  }
+
   return (
     <div className="app">
       {/* 导航 Tab */}
@@ -98,8 +108,13 @@ const App = () => {
           </li>
           <li className="nav-sort">
             {/* 高亮类名： active */}
-            <span className='nav-item'>最新</span>
-            <span className='nav-item'>最热</span>
+            {tabs.map(item =>
+              <span
+                key={item.type}
+                onClick={() => handleTabChange(item.type)}
+                className={`nav-item ${type === item.type && 'active'}`}>
+                {item.text}
+              </span>)}
           </li>
         </ul>
       </div>
