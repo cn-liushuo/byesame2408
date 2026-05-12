@@ -13,12 +13,30 @@ import { useState, useRef } from "react";
 
 // 2.2、DOM 可用时，ref.current 获取 DOM
 // 渲染完毕之后 DOM 生成之后才可用
+
+// 3、父传子
+// 3.1、父组件传递数据 子组件标签身上绑定属性
+// 3.2、子组件接受数据 props 的参数
+function Son(props) {
+  // props: 对象里面包含了父组件传递过来的所有数据
+  // { name: '父组件中的数据' }
+  console.log(props);
+  return (
+    <>
+      <div>
+        this is son, {props.name}, jsx: {props.child}
+      </div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const inputRef = useRef(null);
   const showDom = () => {
     console.dir(inputRef.current);
   };
+  const name = "this is app name";
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -30,6 +48,16 @@ const App = () => {
       <h4>React 中获取 DOM</h4>
       <input ref={inputRef} type="text"></input>
       <button onClick={showDom}>获取 DOM</button>
+      <h4>父传子</h4>
+      <Son
+        name={name}
+        age={18}
+        isTrue={false}
+        list={["vue", "react"]}
+        obj={{ name: "jack" }}
+        cb={() => console.log(123)}
+        child={<span>this is span</span>}
+      />
     </>
   );
 };
