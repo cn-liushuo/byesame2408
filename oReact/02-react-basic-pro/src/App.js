@@ -2,6 +2,7 @@ import './App.scss'
 import avatar from './images/bozai.png'
 import logo192 from './images/logo192.png'
 import { useState } from 'react';
+import _ from 'lodash';
 
 /**
  * 评论列表的渲染和操作
@@ -25,7 +26,7 @@ const defaultList = [
     content: '哎哟，不错哦',
     // 评论时间
     ctime: '10-18 08:15',
-    like: 88,
+    like: 126,
   },
   {
     rpid: 2,
@@ -78,7 +79,7 @@ const tabs = [
 const App = () => {
   // 渲染评论列表
   // 1、使用 useState 维护 list
-  const [commentList, setCommentList] = useState(defaultList);
+  const [commentList, setCommentList] = useState(_.orderBy(defaultList, 'like', 'desc'));
 
   // 删除功能
   const handleDelete = (id) => {
@@ -94,6 +95,15 @@ const App = () => {
   const handleTabChange = (type) => {
     console.log(type);
     setType(type);
+    // 基于列表的排序
+    if (type === 'hot') {
+      // 根据点赞数量排序
+      // lodash
+      setCommentList(_.orderBy(commentList, 'like', 'desc'));
+    } else {
+      // 根据创建时间排序
+      setCommentList(_.orderBy(commentList, 'ctime', 'desc'));
+    }
   }
 
   return (
