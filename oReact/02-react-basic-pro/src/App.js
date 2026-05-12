@@ -1,7 +1,7 @@
 import "./App.scss";
 import avatar from "./images/bozai.png";
 import logo192 from "./images/logo192.png";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import _ from "lodash";
 import classNames from "classnames";
 import { v4 as uuidV4 } from "uuid";
@@ -113,6 +113,7 @@ const App = () => {
 
   // 发表评论
   const [content, setContent] = useState("");
+  const inputRef = useRef(null);
   const handlePublish = () => {
     setCommentList([
       ...commentList,
@@ -128,6 +129,10 @@ const App = () => {
         like: 66,
       },
     ]);
+    // 1. 清空输入框的内容
+    setContent("");
+    // 2. 重新聚焦 DOM(useRef) - focus
+    inputRef.current.focus();
   };
 
   return (
@@ -169,6 +174,7 @@ const App = () => {
           <div className="reply-box-wrap">
             {/* 评论框 */}
             <textarea
+              ref={inputRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className="reply-box-textarea"
