@@ -109,6 +109,25 @@ const App = () => {
     }
   };
 
+  // 发表评论
+  const [content, setContent] = useState("");
+  const handlePublish = () => {
+    setCommentList([
+      ...commentList,
+      {
+        rpid: 100,
+        user: {
+          uid: "30009257",
+          avatar,
+          uname: "黑马前端",
+        },
+        content: content,
+        ctime: "10-19 09:00",
+        like: 66,
+      },
+    ]);
+  };
+
   return (
     <div className="app">
       {/* 导航 Tab */}
@@ -148,12 +167,16 @@ const App = () => {
           <div className="reply-box-wrap">
             {/* 评论框 */}
             <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               className="reply-box-textarea"
               placeholder="发一条友善的评论"
             />
             {/* 发布按钮 */}
             <div className="reply-box-send">
-              <div className="send-text">发布</div>
+              <div className="send-text" onClick={handlePublish}>
+                发布
+              </div>
             </div>
           </div>
         </div>
