@@ -30,6 +30,16 @@ function Son(props) {
   );
 }
 
+// 4、父传子 -- children
+function Son2(props) {
+  console.log("[Son2] props: ", props);
+  return (
+    <>
+      <div>this is son2, {props.children}</div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const inputRef = useRef(null);
@@ -58,6 +68,10 @@ const App = () => {
         cb={() => console.log(123)}
         child={<span>this is span</span>}
       />
+      <h4>父传子 -- children</h4>
+      <Son2>
+        <span>this is span</span>
+      </Son2>
     </>
   );
 };
