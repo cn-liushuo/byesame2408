@@ -40,13 +40,34 @@ function Son2(props) {
   );
 }
 
+// 5、父子组件通信 -- 子传父
+// 核心：在子组件中调用父组件中的函数并传递实参
+
+function Son3({ onGetSonMsg }) {
+  // son3 组件中的数据
+  const son3Msg = "this is son3 msg";
+  return (
+    <>
+      <div>
+        this is Son
+        <button onClick={() => onGetSonMsg(son3Msg)}>sendMsg</button>
+      </div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
+  const [msg, setMsg] = useState("");
   const inputRef = useRef(null);
   const showDom = () => {
     console.dir(inputRef.current);
   };
   const name = "this is app name";
+  const getMsg = (msg) => {
+    console.log(msg);
+    setMsg(msg);
+  };
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -72,6 +93,11 @@ const App = () => {
       <Son2>
         <span>this is span</span>
       </Son2>
+      <h4>父子组件通信 -- 子传父</h4>
+      <div>
+        this is App, {msg}
+        <Son3 onGetSonMsg={getMsg} />
+      </div>
     </>
   );
 };
