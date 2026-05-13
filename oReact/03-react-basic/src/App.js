@@ -56,6 +56,31 @@ function Son3({ onGetSonMsg }) {
   );
 }
 
+// 6、使用状态提升实现兄弟组件通信
+// 6.1、通过子传父 A --> APP
+// 6.2、通过父传子 APP --> B
+function A({ onGetAName }) {
+  // A 组件中的数据
+  const name = "this is A name";
+  return (
+    <>
+      <div>this is A component</div>
+      <button onClick={() => onGetAName(name)}>send</button>
+    </>
+  );
+}
+
+function B({ name }) {
+  return (
+    <>
+      <div>
+        this is B component,
+        {name}
+      </div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -67,6 +92,11 @@ const App = () => {
   const getMsg = (msg) => {
     console.log(msg);
     setMsg(msg);
+  };
+  const [nameA, setANameA] = useState("");
+  const getAName = (name) => {
+    console.log(name);
+    setANameA(name);
   };
   return (
     <>
@@ -97,6 +127,12 @@ const App = () => {
       <div>
         this is App, {msg}
         <Son3 onGetSonMsg={getMsg} />
+      </div>
+      <h4>使用状态提升实现兄弟组件通信</h4>
+      <div>
+        this is App
+        <A onGetAName={getAName} />
+        <B name={nameA} />
       </div>
     </>
   );
