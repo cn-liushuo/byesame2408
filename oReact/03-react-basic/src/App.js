@@ -1,5 +1,5 @@
 // 1、受控绑定表单
-import { useState, useRef } from "react";
+import { useState, useRef, createContext, useContext } from "react";
 
 // 1.1、声明一个 react 状态 - useState
 
@@ -81,6 +81,33 @@ function B({ name }) {
   );
 }
 
+// 7、使用 context 机制跨层级组件通信
+// 7.1、使用 createContext 方法创建一个上下文对象
+
+const MsgContext = createContext();
+
+// 7.2、在顶层组件 通过 Provider 组件提供数据
+
+// 7.3、在底层组件 通过 useContent 钩子函数使用数据
+
+function C() {
+  return (
+    <>
+      <div>this is C component</div>
+      <D />
+    </>
+  );
+}
+
+function D() {
+  const msg = useContext(MsgContext);
+  return (
+    <>
+      <div>this is D component, {msg}</div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -98,6 +125,7 @@ const App = () => {
     console.log(name);
     setANameA(name);
   };
+  const sevenMsg = "this is app msg";
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -133,6 +161,13 @@ const App = () => {
         this is App
         <A onGetAName={getAName} />
         <B name={nameA} />
+      </div>
+      <h4>使用 context 机制跨层级组件通信</h4>
+      <div>
+        <MsgContext.Provider value={sevenMsg}>
+          this is APP
+          <C />
+        </MsgContext.Provider>
       </div>
     </>
   );
