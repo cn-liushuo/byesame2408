@@ -1,5 +1,5 @@
 // 1、受控绑定表单
-import { useState, useRef, createContext, useContext } from "react";
+import { useState, useRef, createContext, useContext, useEffect } from "react";
 
 // 1.1、声明一个 react 状态 - useState
 
@@ -126,6 +126,21 @@ const App = () => {
     setANameA(name);
   };
   const sevenMsg = "this is app msg";
+
+  // 8、useEffect 的基础使用
+  const URL = 'http://geek.itheima.net/v1_0/channels';
+  // 创建一个状态数据
+  const [eightList, setEightList] = useState([]);
+  useEffect(() => {
+    // 额外的操作 获取频道列表
+    async function getList() {
+      const res = await fetch(URL);
+      const jsonRes = await res.json();
+      console.log(jsonRes);
+      setEightList(jsonRes.data.channels)
+    }
+    getList();
+  }, []);
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -169,6 +184,9 @@ const App = () => {
           <C />
         </MsgContext.Provider>
       </div>
+      <h4>
+        
+      </h4>
     </>
   );
 };
