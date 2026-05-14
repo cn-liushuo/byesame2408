@@ -128,7 +128,7 @@ const App = () => {
   const sevenMsg = "this is app msg";
 
   // 8、useEffect 的基础使用
-  const URL = 'http://geek.itheima.net/v1_0/channels';
+  const URL = "http://geek.itheima.net/v1_0/channels";
   // 创建一个状态数据
   const [eightList, setEightList] = useState([]);
   useEffect(() => {
@@ -137,7 +137,7 @@ const App = () => {
       const res = await fetch(URL);
       const jsonRes = await res.json();
       console.log(jsonRes);
-      setEightList(jsonRes.data.channels)
+      setEightList(jsonRes.data.channels);
     }
     getList();
   }, []);
@@ -184,9 +184,15 @@ const App = () => {
           <C />
         </MsgContext.Provider>
       </div>
-      <h4>
-        
-      </h4>
+      <h4>useEffect 的基础使用</h4>
+      <div>
+        this is app
+        <ul>
+          {eightList.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };
