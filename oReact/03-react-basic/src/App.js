@@ -128,6 +128,24 @@ function E() {
   );
 }
 
+// 11.2、 问题：布尔切换的逻辑 当前组件耦合在一起的 不方便复用
+
+// 解决思路：自定义 hook
+function useToggle() {
+  // 可复用的逻辑代码
+  const [elevenValue, setElevenValue] = useState(true);
+
+  const toggle = () => {
+    setElevenValue(!elevenValue);
+  };
+
+  // 哪些状态和回调函数需要在其他组件中使用 return
+  return {
+    elevenValue,
+    toggle,
+  };
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -181,6 +199,23 @@ const App = () => {
 
   // 通过条件渲染模拟组件卸载
   const [show, setShow] = useState(true);
+
+  // 11.1、封装自定义Hook
+  // const [elevenValue, setElevenValue] = useState(true);
+
+  // const toggle = () => {
+  //   setElevenValue(!elevenValue);
+  // };
+  
+  // 11.3、使用自定义 hook
+  const { elevenValue, toggle } = useToggle();
+
+  // 11.4、封装自定义 hook 的通用思路
+
+  // 11.4.1、声明一个以 use 打头的函数
+  // 11.4.2、在函数体内封装可复用的逻辑(只要是可复用的逻辑)
+  // 11.4.3、把组件中用到的状态或者回调 return 出去(以对象或者数组);
+  // 11.4.4、在哪个组件中要用到这个逻辑，就执行这个函数，解构出来状态和回调进行使用
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -242,6 +277,11 @@ const App = () => {
       <div>
         {show && <E />}
         <button onClick={() => setShow(false)}>卸载E组件</button>
+      </div>
+      <h4>封装自定义Hook</h4>
+      <div>
+        {elevenValue && <div>this is div</div>}
+        <button onClick={toggle}>toggle</button>
       </div>
     </>
   );
