@@ -108,6 +108,26 @@ function D() {
   );
 }
 
+// 10、useEffect - 清除副作用
+function E() {
+  // 渲染时开启一个定时器
+  useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("定时器执行中");
+    }, 1000);
+
+    return () => {
+      // 清除副作用(组件卸载时)
+      clearInterval(timer);
+    };
+  }, []);
+  return (
+    <>
+      <div>this is E component</div>
+    </>
+  );
+}
+
 const App = () => {
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -158,6 +178,9 @@ const App = () => {
   useEffect(() => {
     console.log("count 依赖副作用函数执行了");
   }, [count]);
+
+  // 通过条件渲染模拟组件卸载
+  const [show, setShow] = useState(true);
   return (
     <>
       <h4>受控绑定表单</h4>
@@ -214,6 +237,11 @@ const App = () => {
       <div>
         this is app
         <button onClick={() => setCount(count + 1)}>+{count}</button>
+      </div>
+      <h4>useEffect - 清除副作用</h4>
+      <div>
+        {show && <E />}
+        <button onClick={() => setShow(false)}>卸载E组件</button>
       </div>
     </>
   );
