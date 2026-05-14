@@ -146,6 +146,10 @@ function useToggle() {
   };
 }
 
+// 12、React Hook 使用规则
+// 12.1、错误用法一：组件外使用
+// useState('')
+
 const App = () => {
   const [value, setValue] = useState("");
   const [msg, setMsg] = useState("");
@@ -206,7 +210,7 @@ const App = () => {
   // const toggle = () => {
   //   setElevenValue(!elevenValue);
   // };
-  
+
   // 11.3、使用自定义 hook
   const { elevenValue, toggle } = useToggle();
 
@@ -216,6 +220,12 @@ const App = () => {
   // 11.4.2、在函数体内封装可复用的逻辑(只要是可复用的逻辑)
   // 11.4.3、把组件中用到的状态或者回调 return 出去(以对象或者数组);
   // 11.4.4、在哪个组件中要用到这个逻辑，就执行这个函数，解构出来状态和回调进行使用
+
+  // 12.2、错误用法二：if for 组件内部函数
+  if (Math.random() > 0.5) {
+    // useState("");
+  }
+
   return (
     <>
       <h4>受控绑定表单</h4>
