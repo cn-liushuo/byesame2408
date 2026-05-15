@@ -80,13 +80,8 @@ const tabs = [
   { type: "time", text: "最新" },
 ];
 
-const App = () => {
-  // 渲染评论列表
-  // 1、使用 useState 维护 list
-  // const [commentList, setCommentList] = useState(
-  //   _.orderBy(defaultList, "like", "desc"),
-  // );
-
+// 封装请求数据的 hook
+function useGetList() {
   // 获取接口数据渲染
   const [commentList, setCommentList] = useState([]);
 
@@ -96,10 +91,25 @@ const App = () => {
       // axios 请求数据
       const res = await axios.get("http://localhost:3004/list");
       console.log("[http响应数据]", res);
-      setCommentList(res.data)
+      setCommentList(res.data);
     }
     getList();
   }, []);
+
+  return {
+    commentList,
+    setCommentList,
+  };
+}
+
+const App = () => {
+  // 渲染评论列表
+  // 1、使用 useState 维护 list
+  // const [commentList, setCommentList] = useState(
+  //   _.orderBy(defaultList, "like", "desc"),
+  // );
+
+  const { commentList, setCommentList } = useGetList();
 
   // 删除功能
   const handleDelete = (id) => {
