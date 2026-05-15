@@ -1,0 +1,18 @@
+---
+description: Vue 3 + TypeScript 组件与组合式约定
+globs: "**/*.vue"
+alwaysApply: false
+---
+
+# Vue 3 + TypeScript 约定
+
+- 推荐 `<script setup lang="ts">`；`props` 用 TS 定义，尽量提供默认值。
+- 不直接改父组件传入的 `props`，通过 `emit` 通知父级。
+- `v-for` 必须设置稳定唯一的 `key`（优先业务 ID，慎用仅索引）。
+- 同一元素上避免同时 `v-if` 与 `v-for`；列表过滤优先 `computed`。
+- 样式使用 `scoped`；穿透子组件样式用 `:deep()`。
+- 逻辑复用优先 Composables（命名以 `use` 开头）；全局状态用 Pinia，语义化命名（如 `useUserStore`）。
+- 在 `onUnmounted` 中清理定时器、监听与未完成的异步副作用。
+- 对 `v-html` 或用户输入渲染的 HTML 注意 XSS 防护。
+- 调试日志与项目现有方式对齐，避免无意义刷屏。
+- 控制组件体量，复杂逻辑拆子组件或抽 Composables。

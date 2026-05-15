@@ -1,0 +1,28 @@
+---
+description: Git 提交信息 Conventional Commits 格式与中文描述（需写 commit 时遵循）
+alwaysApply: true
+---
+
+# Git 提交信息（Conventional Commits）
+
+仅在需要生成提交信息时适用。
+
+## 格式
+
+```
+<类型>(<可选作用域>): <简短描述>
+
+<可选正文：动机与影响>
+
+<可选脚注>
+```
+
+## 类型（择一）
+
+`feat` `fix` `docs` `style` `refactor` `perf` `test` `chore` `ci`
+
+## 规则
+
+描述用**简体中文**、**祈使句**；标题不超过 50 字、句末不加句号；变更复杂时写正文，单行建议不超过 72 字。
+
+**示例**：`feat(auth): 增加手机号验证码登录` / `fix(api): 修复用户列表分页参数越界`

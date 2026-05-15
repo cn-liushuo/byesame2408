@@ -1,0 +1,16 @@
+---
+description: HTML/CSS/JS/TS 前端通用约定
+globs: "**/*.{html,css,scss,vue,js,ts,mjs,cjs}"
+alwaysApply: false
+---
+
+# 前端通用（HTML / CSS / JS / TS）
+
+- **缩进**：2 空格，不用 Tab。
+- **比较**：`===` / `!==`，禁止 `==` / `!=`。
+- **变量**：优先 `const`，需重赋值再用 `let`，禁止 `var`。
+- **TS/JS**：与项目一致使用分号；`camelCase` / `PascalCase`（类与组件）/ 常量 `UPPER_SNAKE_CASE`。
+- **模板**：属性名小写，属性值双引号；自定义属性宜 `data-*`。
+- **样式**：类名 `kebab-case`；声明独占一行并以 `;` 结尾；颜色十六进制小写，可简则简。
+- **行宽**：单行建议不超过 100 字符，必要时换行。
+- 资源与协议以项目 Vite 配置为准，不强制协议相对地址 `//`。
