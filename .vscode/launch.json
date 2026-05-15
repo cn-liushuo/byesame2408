@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug with Console Ninja",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}",
+      "skipFileRegExps": ["^webpack:"] // 关键修复项
+    }
+  ]
+}

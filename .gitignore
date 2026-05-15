@@ -62,4 +62,5 @@ typings/
 
 # development tools
 .idea
-.vscode
+.vscode/*
+!.vscode/launch.json
