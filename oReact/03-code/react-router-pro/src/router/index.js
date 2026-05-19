@@ -10,13 +10,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
+      // 设置为默认二级路由 一级路由访问的时候，它也能得到渲染
+      {
+        index: true,
+        // path: "/board",
+        element: <Board />,
+      },
       {
         path: "/about",
         element: <About />,
-      },
-      {
-        path: "/board",
-        element: <Board />,
       },
     ],
   },
