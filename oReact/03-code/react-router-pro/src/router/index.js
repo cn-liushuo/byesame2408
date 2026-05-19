@@ -5,7 +5,8 @@ import About from "../page/About";
 import Board from "../page/Board";
 import NotFound from "../page/NotFound";
 
-import { createBrowserRouter } from "react-router-dom";
+// createBrowserRouter 是创建浏览器路由  createHashRouter 是创建哈希路由
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
