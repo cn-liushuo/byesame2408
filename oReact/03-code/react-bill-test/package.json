@@ -20,8 +20,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "craco start",
+    "build": "craco build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +46,8 @@
   "volta": {
     "node": "24.15.0",
     "npm": "11.14.1"
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0"
   }
 }
