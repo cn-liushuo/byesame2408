@@ -42,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "volta": {
+    "node": "24.15.0",
+    "npm": "11.14.1"
   }
 }
