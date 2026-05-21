@@ -64,3 +64,6 @@ typings/
 .idea
 .vscode/*
 !.vscode/launch.json
+
+# rar
+*.rar
