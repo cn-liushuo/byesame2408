@@ -69,12 +69,15 @@ const MonthlyBill = () => {
 
       <div className="content">
         <div className="header">
+          {/* 时间切换区域 */}
           <div className="date">
             <span className="text" onClick={onShowDate}>
               {selectedYear} | {selectedMonth + 1}月账单
             </span>
+            {/* 思路：根据当前弹窗打开的状态控制 expand 类名是否存在 */}
             <span className={classNames('arrow', visible && 'expand')}></span>
           </div>
+          {/* 日期选择器 */}
           <DatePicker
             className="kaDate"
             title="记账日期"

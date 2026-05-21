@@ -6,6 +6,7 @@ import { getBills } from '@/store/slices/ka'
 
 export const useBillList = () => {
   const dispatch = useDispatch()
+  // 按月做数据的分组
   const { billList } = useSelector(state => state.ka)
 
   useEffect(() => {
