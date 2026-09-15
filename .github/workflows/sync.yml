@@ -10,13 +10,40 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    # java 等大仓分批推送可能较久，放宽单 job 上限
+    # 大仓分批推送可能较久；多仓并行时各自独立计时
     timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: byesame2408
+            github_repo: cn-liushuo/byesame2408
+            gitee_url: git@gitee.com:liushuo_fe/byesame2408.git
+            gitcode_url: git@gitcode.com:liushuo_fe/byesame2408.git
+          - name: java
+            github_repo: cn-liushuo/java
+            gitee_url: git@gitee.com:liushuo_fe/java.git
+            gitcode_url: git@gitcode.com:liushuo_fe/java.git
+          - name: agent
+            github_repo: cn-liushuo/agent
+            gitee_url: git@gitee.com:liushuo_fe/agent.git
+            gitcode_url: git@gitcode.com:liushuo_fe/agent.git
+    name: Sync ${{ matrix.name }}
     steps:
-      - name: Checkout code
+      - name: Checkout sync scripts
         uses: actions/checkout@v4
         with:
+          path: sync-tools
+          sparse-checkout: |
+            .github/scripts
+          sparse-checkout-cone-mode: true
+
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.github_repo }}
           fetch-depth: 0
+          path: target
 
       - name: Setup SSH for mirror push
         id: setup_ssh
@@ -47,17 +74,19 @@ jobs:
           ssh-keyscan -H gitcode.com >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-          chmod +x .github/scripts/mirror-push.sh
+          chmod +x sync-tools/.github/scripts/mirror-push.sh
 
       - name: Mirror to Gitee
         id: mirror_gitee
+        working-directory: target
         env:
           BATCH_SIZE: "5"
-        run: .github/scripts/mirror-push.sh "git@gitee.com:liushuo_fe/byesame2408.git"
+        run: ../sync-tools/.github/scripts/mirror-push.sh "${{ matrix.gitee_url }}"
 
       - name: Mirror to GitCode
         # SSH 就绪后即使 Gitee 失败也继续推 GitCode
         if: steps.setup_ssh.outcome == 'success'
+        working-directory: target
         env:
           BATCH_SIZE: "5"
-        run: .github/scripts/mirror-push.sh "git@gitcode.com:liushuo_fe/byesame2408.git"
+        run: ../sync-tools/.github/scripts/mirror-push.sh "${{ matrix.gitcode_url }}"
